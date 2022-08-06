@@ -7,7 +7,7 @@ import java.util.Locale;
 
 import static org.junit.Assert.*;
 
-public class FlightManTest {
+public class FlightManagerTest {
 
     Aircraft aircraft;
     Pilot pilot;
@@ -15,7 +15,7 @@ public class FlightManTest {
     Passenger passenger2;
     Passenger passenger3;
     Passenger passengerOverWeight;
-    FlightMan flightMan;
+    FlightManager flightManager;
 
     @Before
     public void before(){
@@ -29,53 +29,53 @@ public class FlightManTest {
         passenger2 = new Passenger("Sumin", 2);
         passenger3 = new Passenger("Sally", 2);
         passengerOverWeight = new Passenger("Boris", 10);
-        flightMan = new FlightMan(aircraft, pilot, "SB1", "ABZ", "IBA", departureTime);
+        flightManager = new FlightManager(aircraft, pilot, "SB1", "ABZ", "IBA", departureTime);
     }
 
     @Test
     public void flightStartsWithNoPassengers(){
-        assertEquals(0, flightMan.getNumberOfPassengers());
+        assertEquals(0, flightManager.getNumberOfPassengers());
     }
 
     @Test
     public void canGetWeightReservedForBags(){
-        assertEquals(20000, flightMan.weightAvailableForBags());
+        assertEquals(20000, flightManager.weightAvailableForBags());
     }
 
     @Test
     public void canGetPaxTotalBagWeight(){
-        flightMan.checkInPassenger(passenger1);
-        assertEquals(10, flightMan.getPaxBagWeight(passenger1));
+        flightManager.checkInPassenger(passenger1);
+        assertEquals(10, flightManager.getPaxBagWeight(passenger1));
     }
 
     @Test
     public void canGetPaxBaggageAllowance(){
-        assertEquals(20, flightMan.getBaggageAllowance());
+        assertEquals(20, flightManager.getBaggageAllowance());
     }
 
     @Test
     public void isPaxWithinBaggageLimitFalse(){
-        assertFalse(flightMan.withinBaggageLimit(passengerOverWeight));
+        assertFalse(flightManager.withinBaggageLimit(passengerOverWeight));
     }
     @Test
     public void isPaxWithinBaggageLimitTrue(){
-        assertTrue(flightMan.withinBaggageLimit(passenger1));
+        assertTrue(flightManager.withinBaggageLimit(passenger1));
     }
 
     @Test
     public void canGetTotalBaggageBooked(){
-        flightMan.checkInPassenger(passenger1);
-        flightMan.checkInPassenger(passenger2);
-        flightMan.checkInPassenger(passenger3);
-        assertEquals(60, flightMan.getTotalBaggageWeight());
+        flightManager.checkInPassenger(passenger1);
+        flightManager.checkInPassenger(passenger2);
+        flightManager.checkInPassenger(passenger3);
+        assertEquals(60, flightManager.getTotalBaggageWeight());
     }
 
 
     @Test
     public void canGetRemainingBaggageWeight(){
-        flightMan.checkInPassenger(passenger1);
-        flightMan.checkInPassenger(passenger2);
-        flightMan.checkInPassenger(passenger3);
-        assertEquals(19940, flightMan.getTotalBaggageWeightRemaining());
+        flightManager.checkInPassenger(passenger1);
+        flightManager.checkInPassenger(passenger2);
+        flightManager.checkInPassenger(passenger3);
+        assertEquals(19940, flightManager.getTotalBaggageWeightRemaining());
     }
 }

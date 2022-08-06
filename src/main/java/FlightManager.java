@@ -1,12 +1,12 @@
 import java.time.LocalDateTime;
 
-public class FlightMan extends Flight{
+public class FlightManager extends Flight{
 
 
     private final int weightPerBag;
     private final int baggageAllowance;
 
-    public FlightMan(Aircraft aircraft, Pilot pilot, String flightNumber, String departureCode, String destinationCode, LocalDateTime departureTime) {
+    public FlightManager(Aircraft aircraft, Pilot pilot, String flightNumber, String departureCode, String destinationCode, LocalDateTime departureTime) {
         super(aircraft, pilot, flightNumber, departureCode, destinationCode, departureTime);
         this.weightPerBag = 10;
         this.baggageAllowance = 20;
